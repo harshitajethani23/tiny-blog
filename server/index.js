@@ -2,12 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import {postSignup,postLogin} from "./controllers/user.js"
 dotenv.config();
 
 const app= express();
 
 app.use(express.json());
 app.use(cors());
+
 
 const connectDB = async ()=> {
     try{
@@ -20,12 +22,18 @@ const connectDB = async ()=> {
     }
 };
 
+
 app.get("/",(req,res)=>{
     res.json({
         success:true,
         message:"server is healthy..."
     })
-})
+}); 
+
+app.post("/signup",postSignup)
+app.post("/login",postLogin)
+
+
 
 const PORT = process.env.PORT || 8080;
 
