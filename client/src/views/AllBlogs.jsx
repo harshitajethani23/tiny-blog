@@ -1,6 +1,19 @@
+import {useState,useEffect} from "react";
+import {getCurrentUser} from "./../util";
+
 function AllBlogs() {
+
+    const [user,setUser] = useState(null);
+
+    useEffect(()=>{
+       setUser(getCurrentUser());
+    },[])
     return(
-        <div>AllBlogs</div>
+        <div>
+            <h1>AllBlogs</h1>
+            {user ? `Hello ${user.name}!`:`Welcome Guest`}
+
+        </div>
     )
 }
 export default AllBlogs;

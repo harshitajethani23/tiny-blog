@@ -6,6 +6,8 @@ import AllBlogs from "./views/AllBlogs";
 import EditBlog from "./views/EditBlog";
 import NewBlog from "./views/NewBlog";
 import ReadBlog from "./views/ReadBlog";
+import Signup from "./views/Signup";
+import Login from "./views/Login";
 
 createRoot(document.getElementById('root')).render(
  <BrowserRouter>
@@ -14,6 +16,8 @@ createRoot(document.getElementById('root')).render(
   <Route path="/new" element = {<NewBlog />} />
   <Route path="/edit/:id" element = {<EditBlog />} />
   <Route path="/blog/:slug" element = {<ReadBlog />} />
+   <Route path="/login" element = {<Login />} />
+    <Route path="/Signup" element = {<Signup />} />
  </Routes>
  </BrowserRouter>
 )
