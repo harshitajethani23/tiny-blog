@@ -23,3 +23,6 @@ h5 {
 h6 {
     @apply text-sm font-thin;
 }
+
+body 
+{@apply bg-[#FFF5F7]}

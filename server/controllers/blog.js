@@ -32,7 +32,9 @@ const postBlogs = async (req,res) => {
 };
 
 const getBlogs = async (req,res) => {
-    const blogs = await Blog.find().populate("author","_id name email")
+    const blogs = await  Blog.find().populate("author","_id name email").sort({
+        createdAt: -1,
+    })
 
     res.status(200).json({
         success:true,
@@ -40,5 +42,24 @@ const getBlogs = async (req,res) => {
         message:"Blogs fetched successfully",
     })
 };
+const getBlogForSlug = async (req,res)=>{
+    const {slug} = req.params;
 
-export {getBlogs,postBlogs};
+    const blog = await Blog.findOne({slug:slug}).populate(
+        "author",
+        "name _id email"
+    );
+
+    if (!blog) {
+        return res.status(404).json({
+            success:false,
+            message:"Blog not found",
+        })
+    }
+    res.status(200).json({
+        success:true,
+        data:blog,
+        message:"Blog fetched successfully"
+    })
+};
+export {getBlogs,postBlogs,getBlogForSlug};
